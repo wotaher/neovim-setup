@@ -15,3 +15,4 @@ vim.opt.expandtab = false
 require('config.keymap')
 require("config.lazy")
 require("config.treesitter")
+require("config.conform")
