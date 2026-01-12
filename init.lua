@@ -8,5 +8,7 @@ vim.g.maplocalleader = "\\"
 -----------------------------------------------------------
 -- BOOTSTRAP LAZY
 -----------------------------------------------------------
-require("config.lazy")
+
 require('config.keymap')
+require("config.lazy")
+require("config.treesitter")
