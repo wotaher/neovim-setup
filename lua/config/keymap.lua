@@ -2,7 +2,6 @@
 -- Global keymaps
 -- =========================
 
-
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -75,3 +74,7 @@ keymap("v", ">", ">gv", opts)
 -- Move selected lines
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
+	desc = "Show diagnostic",
+})

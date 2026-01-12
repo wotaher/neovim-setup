@@ -12,7 +12,8 @@ vim.opt.expandtab = false
 -- BOOTSTRAP LAZY
 -----------------------------------------------------------
 
-require('config.keymap')
+require("config.keymap")
 require("config.lazy")
 require("config.treesitter")
 require("config.conform")
+require("config.lsp")

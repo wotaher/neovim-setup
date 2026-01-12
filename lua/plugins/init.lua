@@ -13,6 +13,27 @@ return {
 		build = ":TSUpdate",
 	},
 	{
+		"neovim/nvim-lspconfig",
+	},
+	{
+		"williamboman/mason.nvim",
+		config = true,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"ts_ls",
+					"html",
+					"cssls",
+					"lua_ls",
+					"eslint",
+				},
+			})
+		end,
+	},
+	{
 		"stevearc/conform.nvim",
 		opts = {},
 	},
