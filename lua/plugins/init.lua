@@ -13,6 +13,46 @@ return {
 		build = ":TSUpdate",
 	},
 	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		cmd = "Telescope",
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					prompt_prefix = "   ",
+					selection_caret = "❯ ",
+					path_display = { "smart" },
+					layout_config = {
+						horizontal = {
+							preview_width = 0.55,
+						},
+					},
+				},
+			})
+		end,
+	},
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	},
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("oil").setup({
+				default_file_explorer = true,
+				view_options = {
+					show_hidden = true,
+				},
+			})
+		end,
+	},
+	{
 		"neovim/nvim-lspconfig",
 	},
 	{
@@ -91,6 +131,5 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		opts = {},
 	},
 }

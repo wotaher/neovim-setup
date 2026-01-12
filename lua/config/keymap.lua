@@ -91,3 +91,7 @@ vim.keymap.set("n", "<leader>cf", function()
 		end,
 	})
 end, { desc = "Fix All (ESLint)" })
+
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", {
+	desc = "File explorer (Oil)",
+})

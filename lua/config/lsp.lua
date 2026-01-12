@@ -44,6 +44,13 @@ vim.lsp.config("eslint", {
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
 			callback = function()
+				if vim.bo.buftype ~= "" then
+					return
+				end
+				if vim.fn.expand("%"):match("^oil://") then
+					return
+				end
+
 				vim.lsp.buf.code_action({
 					apply = true,
 					filter = function(action)
