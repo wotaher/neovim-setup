@@ -78,3 +78,16 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {
 	desc = "Show diagnostic",
 })
+
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
+	desc = "Code Actions",
+})
+
+vim.keymap.set("n", "<leader>cf", function()
+	vim.lsp.buf.code_action({
+		apply = true,
+		filter = function(action)
+			return action.kind and action.kind:match("source.fixAll")
+		end,
+	})
+end, { desc = "Fix All (ESLint)" })
