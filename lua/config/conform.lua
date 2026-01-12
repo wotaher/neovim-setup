@@ -1,4 +1,6 @@
-require("conform").setup({
+local conform = require("conform")
+
+conform.setup({
 	formatters_by_ft = {
 		javascript = { "prettier" },
 		typescript = { "prettier" },
@@ -11,17 +13,24 @@ require("conform").setup({
 		markdown = { "prettier" },
 		lua = { "stylua" },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_fallback = false,
-		filter = function(bufnr)
-			if vim.bo[bufnr].buftype ~= "" then
-				return false
-			end
-			if vim.api.nvim_buf_get_name(bufnr):match("^oil://") then
-				return false
-			end
-			return true
-		end,
-	},
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	callback = function(args)
+		local bufnr = args.buf
+		local name = vim.api.nvim_buf_get_name(bufnr)
+
+		if vim.bo[bufnr].buftype ~= "" then
+			return
+		end
+		if name:match("^oil://") then
+			return
+		end
+
+		conform.format({
+			bufnr = bufnr,
+			lsp_fallback = false,
+			timeout_ms = 500,
+		})
+	end,
 })

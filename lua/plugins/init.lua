@@ -130,6 +130,44 @@ return {
 		end,
 	},
 	{
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup({
+				detection_methods = { "pattern" },
+				patterns = { ".git", "package.json", "tsconfig.json" },
+			})
+
+			require("telescope").load_extension("projects")
+		end,
+	},
+	{
 		"stevearc/conform.nvim",
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("which-key").setup({
+				preset = "modern",
+				plugins = {
+					spelling = true,
+				},
+				win = {
+					border = "rounded",
+				},
+			})
+
+			require("which-key").add({
+				{ "<leader>f", group = "Find / Telescope" },
+				{ "<leader>c", group = "Code / LSP" },
+				{ "<leader>g", group = "Git" },
+				{ "<leader>e", group = "Explorer" },
+				{ "<leader>d", group = "Diagnostics" },
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.icons",
+		lazy = true,
 	},
 }
