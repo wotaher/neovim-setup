@@ -83,6 +83,14 @@ vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {
 	desc = "Code Actions",
 })
 
+vim.keymap.set("n", "<leader>ci", vim.lsp.buf.implementation, {
+	desc = "Go to Implementation",
+})
+
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.references, {
+	desc = "Go to References",
+})
+
 vim.keymap.set("n", "<leader>cf", function()
 	vim.lsp.buf.code_action({
 		apply = true,
@@ -99,3 +107,7 @@ vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", {
 vim.keymap.set("n", "<leader>fp", "<cmd>Telescope projects<CR>", {
 	desc = "Projects",
 })
+
+-- wyłącz command-line window (q: i q/)
+vim.keymap.set("n", "q:", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "q/", "<Nop>", { noremap = true, silent = true })
